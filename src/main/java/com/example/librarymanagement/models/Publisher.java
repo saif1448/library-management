@@ -13,9 +13,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Document
 public class Publisher {
-    
+
     @Id
-    private int pubId;
+    private String id;
     private String address;
     private String name;
 

@@ -3,6 +3,9 @@ package com.example.librarymanagement.models;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,14 +14,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Document
+@JacksonXmlRootElement(localName = "Book")
 public class Book {
 
     @Id
-    private int bookId;
-    private int pubId;
+    // @JsonIgnore
+    private String id;
+    private String pubId;
     private String title;
     private String author;
-    private double price;
-    private boolean available;
+    private Double price;
+    private Boolean available;
 
 }

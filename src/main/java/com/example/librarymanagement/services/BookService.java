@@ -29,29 +29,29 @@ public class BookService {
         return bookRepository.findAll();
     }
 
-    public Mono<?> getById(int id) {
+    public Mono<?> getById(String id) {
         return bookRepository.findById(id);
     }
 
-    public Mono<?> modifyBookById(int id, BookDto bookDto) {
+    public Mono<?> modifyBookById(String id, BookDto bookDto) {
         return bookRepository.findById(id)
                 // .switchIfEmpty(Mono.error(new Throwable("Book not found for id: " + id)))
                 .flatMap(book -> {
                     if (book != null) {
-                        if (bookDto.getPub() != null) {
-                            book.setPubId(bookDto.getPub());
+                        if (bookDto.getPubId() != null) {
+                            book.setPubId(bookDto.getPubId());
                         }
-                        if (bookDto.getBook_name() != null) {
-                            book.setTitle(bookDto.getBook_name());
+                        if (bookDto.getTitle() != null) {
+                            book.setTitle(bookDto.getTitle());
                         }
                         if (bookDto.getPrice() != null) {
                             book.setPrice(bookDto.getPrice());
                         }
-                        if (bookDto.getPresence() != null) {
-                            book.setAvailable(bookDto.getPresence());
+                        if (bookDto.getAvailable() != null) {
+                            book.setAvailable(bookDto.getAvailable());
                         }
-                        if (bookDto.getWriter() != null) {
-                            book.setAuthor(bookDto.getWriter());
+                        if (bookDto.getAuthor() != null) {
+                            book.setAuthor(bookDto.getAuthor());
                         }
                         return bookRepository.save(book);
                     } else {
@@ -61,7 +61,7 @@ public class BookService {
                 });
     }
 
-    public Mono<?> removeBookById(int id) {
+    public Mono<?> removeBookById(String id) {
 
         return bookRepository.deleteById(id);
 

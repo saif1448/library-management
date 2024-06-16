@@ -1,6 +1,7 @@
 package com.example.librarymanagement.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,18 +36,23 @@ public class BookController {
         return bookService.getAll();
     }
 
-    @GetMapping("/get/{id}")
-    public Mono<?> getBookById(@PathVariable int id) {
+    @GetMapping(path = "/get/{id}", produces = MediaType.APPLICATION_XML_VALUE)
+    public Mono<?> getBookById(@PathVariable String id) {
+        return bookService.getById(id);
+    }
+
+    @GetMapping(path = "/get/json/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Mono<?> getBookByIdJson(@PathVariable String id) {
         return bookService.getById(id);
     }
 
     @PutMapping("/update/{id}")
-    public Mono<?> updateBookById(@PathVariable int id, @RequestBody BookDto bookDto){
+    public Mono<?> updateBookById(@PathVariable String id, @RequestBody BookDto bookDto) {
         return bookService.modifyBookById(id, bookDto);
     }
 
     @DeleteMapping("/delete/{id}")
-    public Mono<?> deleteBookById(@PathVariable int id){
+    public Mono<?> deleteBookById(@PathVariable String id) {
         return bookService.removeBookById(id);
     }
 

@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.example.librarymanagement.models.Book;
 
 @Repository
-public interface BookRepository extends ReactiveMongoRepository<Book, Integer> {
+public interface BookRepository extends ReactiveMongoRepository<Book, String> {
 
 }
